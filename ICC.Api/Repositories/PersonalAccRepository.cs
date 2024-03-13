@@ -65,7 +65,7 @@ namespace ICC.Api.Repositories
             return personalAccounts;
         }
 
-        public async Task<PersonalAccount> UpdatePersonalAccount(int id, PersonalAccToAddDto personalAccountDto)
+        public async Task<PersonalAccount> UpdatePersonalAccount(int id, PersonalAccToUpdateDto personalAccountDto)
         {
             var account = await this.iCCDbContext.PersonalAccounts.FindAsync(id);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ICC.Models.DtOs
 {
-    internal class PersonalAccToUpdateDto
+    public class PersonalAccToUpdateDto
     {
         public int Id { get; set; }
         public DateTime ExpirationDate { get; set; }
