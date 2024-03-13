@@ -71,7 +71,7 @@ namespace ICC.Api.Repositories
 
             if (account != null)
             {
-                account.ExpirationDate = personalAccountDto.EffectiveDate;
+                account.ExpirationDate = personalAccountDto.ExpirationDate;
                 account.Address = personalAccountDto.Address;
                 account.Square = personalAccountDto.Square;
                 account.Residents = personalAccountDto.Residents;
