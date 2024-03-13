@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICC.Api", "ICC.Api\ICC.Api.csproj", "{13522272-81F1-474D-8E16-3F054E052F79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICC.Api", "ICC.Api\ICC.Api.csproj", "{13522272-81F1-474D-8E16-3F054E052F79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{0F57A680-0A80-4B93-B65F-BB51B8D9AF14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{13522272-81F1-474D-8E16-3F054E052F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13522272-81F1-474D-8E16-3F054E052F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13522272-81F1-474D-8E16-3F054E052F79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F57A680-0A80-4B93-B65F-BB51B8D9AF14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F57A680-0A80-4B93-B65F-BB51B8D9AF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F57A680-0A80-4B93-B65F-BB51B8D9AF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F57A680-0A80-4B93-B65F-BB51B8D9AF14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
