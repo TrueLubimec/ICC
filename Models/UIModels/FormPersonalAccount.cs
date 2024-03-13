@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.UIModels
+namespace ICC.Models.UIModels
 {
     internal class FormPersonalAccount
     {

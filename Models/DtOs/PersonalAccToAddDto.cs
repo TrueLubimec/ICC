@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ICC.Models.DtOs
 {
-    public class PersonalAccountDto
+    public class PersonalAccToAddDto
     {
-        public int Id { get; set; }
         public DateTime EffectiveDate { get; set; }
         public string Address { get; set; }
         public int Square { get; set; }

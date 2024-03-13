@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICC.Api", "ICC.Api\ICC.Api.csproj", "{13522272-81F1-474D-8E16-3F054E052F79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{0F57A680-0A80-4B93-B65F-BB51B8D9AF14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICC.Models", "Models\ICC.Models.csproj", "{0F57A680-0A80-4B93-B65F-BB51B8D9AF14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

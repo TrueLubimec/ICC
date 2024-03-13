@@ -1,6 +1,7 @@
 ﻿using ICC.Api.Data;
 using ICC.Api.Entities;
 using ICC.Api.Repositories.Contracts;
+using ICC.Models.DtOs;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,34 @@ namespace ICC.Api.Repositories
             throw new System.NotImplementedException();
         }
 
-        public async Task<PersonalAccount> AddPersonalAccount()
+        public async Task<PersonalAccount> AddPersonalAccount(PersonalAccToAddDto personalAccToAddDto)
         {
-            throw new System.NotImplementedException();
+            //сюда впихнуть потом функцию проверки
+            var account = await (from acc in this.iCCDbContext.PersonalAccounts
+                                 select new PersonalAccount
+                                 {
+                                     EffectiveDate = acc.EffectiveDate,
+                                     Address = acc.Address,
+                                     Square = acc.Square,
+                                     Residents = acc.Residents
+                                 }).SingleOrDefaultAsync();
+            if (personalAccToAddDto != null)
+            {
+                var res = await this.iCCDbContext.PersonalAccounts.AddAsync(account);
+                await this.iCCDbContext.SaveChangesAsync();
+                return res.Entity;
+            }
+            return null;
         }
 
-        public Task<PersonalAccount> DeletePersonalAccount(int id)
+        public async Task<PersonalAccount> DeletePersonalAccount(int id)
         {
-            throw new System.NotImplementedException();
+            var personalAccount = await this.iCCDbContext.PersonalAccounts.FindAsync(id);
+            if (personalAccount != null) {
+                this.iCCDbContext.PersonalAccounts.Remove(personalAccount);
+                await this.iCCDbContext.SaveChangesAsync();
+            }
+            return personalAccount;
         }
 
         public async Task<PersonalAccount> GetPersonalAccountById(int id)
@@ -44,9 +65,21 @@ namespace ICC.Api.Repositories
             return personalAccounts;
         }
 
-        public Task<PersonalAccount> UpdatePersonalAccount(int id)
+        public async Task<PersonalAccount> UpdatePersonalAccount(int id, PersonalAccToAddDto personalAccountDto)
         {
-            throw new System.NotImplementedException();
+            var account = await this.iCCDbContext.PersonalAccounts.FindAsync(id);
+
+            if (account != null)
+            {
+                account.ExpirationDate = personalAccountDto.EffectiveDate;
+                account.Address = personalAccountDto.Address;
+                account.Square = personalAccountDto.Square;
+                account.Residents = personalAccountDto.Residents;
+                await this.iCCDbContext.SaveChangesAsync();
+                return account;
+            }
+
+            return null;
         }
     }
 }

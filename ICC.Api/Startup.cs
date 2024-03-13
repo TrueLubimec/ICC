@@ -1,4 +1,6 @@
 using ICC.Api.Data;
+using ICC.Api.Repositories;
+using ICC.Api.Repositories.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +37,8 @@ namespace ICC.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ICC.Api", Version = "v1" });
             });
+
+            services.AddScoped<IPersonalAccRepository, PersonalAccRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
