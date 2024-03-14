@@ -15,12 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Models\ICC.Models.csproj" />
+    <ProjectReference Include="..\ICC.Models\ICC.Models.csproj" />
   </ItemGroup>
 
 </Project>
