@@ -1,27 +1,76 @@
 ﻿using ICC.Models.DtOs;
 using ICC.Web.Services.Contracts;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace ICC.Web.Services
 {
     public class PersonalAccountService : IPersonalAccountService
     {
-        private readonly HttpClient httpClient;
+        private readonly IHttpClientFactory httpClientFactory;
 
-        public PersonalAccountService(HttpClient httpClient)
+        private HttpClient httpClient { get; set; }
+        public PersonalAccountService(IHttpClientFactory httpClientFactory)
         {
-            this.httpClient = httpClient;
+            this.httpClientFactory = httpClientFactory;
+            //this.httpClient = httpClientFactory.CreateClient("test");
         }
-        public Task<PersonalAccountDto> GetAccount(int id)
+        public async Task<PersonalAccountDto> GetAccount(int id)
         {
-            throw new System.NotImplementedException();
+            httpClient = httpClientFactory.CreateClient("test");
+            try
+            {
+                var response = await httpClient.GetAsync($"api/PersonalAccount/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return default(PersonalAccountDto);
+                    }
+                    return await response.Content.ReadFromJsonAsync<PersonalAccountDto>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception(message.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                //log
+                throw;  
+            }
         }
 
-        public Task<IEnumerable<PersonalAccountDto>> GetAccounts()
+        public async Task<IEnumerable<PersonalAccountDto>> GetAccounts()
         {
-            throw new System.NotImplementedException();
+            var httpClient = httpClientFactory.CreateClient("test");
+            try
+            {
+                var response = await httpClient.GetAsync("api/PersonalAccount");
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return Enumerable.Empty<PersonalAccountDto>();
+                    }
+                    return await response.Content.ReadFromJsonAsync<IEnumerable<PersonalAccountDto>>();
+                }
+                else {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception(message.ToString());
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
     }
 }

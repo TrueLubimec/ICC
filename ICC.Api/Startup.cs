@@ -53,7 +53,7 @@ namespace ICC.Api
             }
 
             app.UseCors(policy =>
-                policy.WithOrigins("http://localhost:44396", "http://localhost:44396")
+                policy.WithOrigins("http://localhost:44396", "http://localhost:44338")
                 .AllowAnyMethod()
                 .WithHeaders(HeaderNames.ContentType));
 

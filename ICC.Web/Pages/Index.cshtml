@@ -1,10 +1,43 @@
 ﻿@page
+@using ICC.Models.DtOs
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+@if (Model.accountDto == null)
+{
+    <h3> Loading accounts from db... </h3>
+    <h3> @Model.accountDto.Count()</h3>
+}
+else
+{
+    <h3 class="mb-5"> Accounts </h3>
+
+    var accountsCount = Model.accountDto.Count();
+
+    @if (accountsCount > 0)
+    {
+        @foreach (var item in Model.accountDto)
+        {
+            <div class="col-md-3 mb-2">
+                <a href="/ProductDetails/@item.Id">  @*СЮДА ВПИСАТЬ ПЕРЕХОД НА ДЕТАЛИ*@
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">
+                                @item.Address
+                                @item.EffectiveDate
+                            </h5>
+                            <p class="card-text">
+                                <b>@item.Square.ToString()</b>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+        }
+    }
+}

@@ -7,10 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace ICC.Web
 {
@@ -28,8 +24,11 @@ namespace ICC.Web
         {
             services.AddRazorPages();
 
-            services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44338") });
-
+            //services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44338") });
+            services.AddHttpClient("test", httpclient =>
+            {
+                httpclient.BaseAddress = new Uri("https://localhost:44338");
+            });
             services.AddScoped<IPersonalAccountService, PersonalAccountService>();
         }
 
