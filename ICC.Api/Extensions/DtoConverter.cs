@@ -26,6 +26,7 @@ namespace ICC.Api.Extensions
                     {
                         Id = persAcc.Id,
                         EffectiveDate = persAcc.EffectiveDate,
+                        AccountNum = persAcc.AccountNum,
                         Address = persAcc.Address,
                         Square = persAcc.Square,
                         Residents = persAcc.Residents

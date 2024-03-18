@@ -1,6 +1,6 @@
 ﻿@page
 @using ICC.Models.DtOs
-@model IndexModel
+@model IndexSearchModel
 @{
     ViewData["Title"] = "Home page";
 }
@@ -14,18 +14,6 @@
 else
 {
     <h3 class="mb-5"> Accounts </h3>
-
-
-    @*РЕАЛИЗАЦИЯ ПОИСКОВИКА И ФИЛЬТРОВ*@
-    <form>
-        <p>
-            <select asp-for="AccountNumber" asp-items="Model.Number"> @*тут лучше как раз фильры ебануть, а то он сразу кидает все номера*@
-                <option value="">All</option>
-            </select>
-            Account Number: <input type="text" asp-for="SearchLine"/>
-            <input type="submit" value="Filter" />
-        </p>
-    </form>
 
     var accountsCount = Model.accountDto.Count();
 

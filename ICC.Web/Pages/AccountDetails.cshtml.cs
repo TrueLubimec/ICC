@@ -1,3 +1,4 @@
+using ICC.Models.DtOs;
 using ICC.Web.Services;
 using ICC.Web.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,10 @@ namespace ICC.Web.Pages
         private readonly ILogger<AccountDetailsModel> logger;
         private readonly IPersonalAccountService personalAccountService;
 
+        public PersonalAccountDto accountDto { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public int accountId { get; set; }
 
         public AccountDetailsModel(ILogger<AccountDetailsModel> logger,IPersonalAccountService personalAccountService)
         {
@@ -21,7 +25,7 @@ namespace ICC.Web.Pages
         }
         public async Task OnGet()
         {
-            personalAccount = await personalAccountService.GetAccount(1);
+            accountDto = await personalAccountService.GetAccount(accountId);
         }
     }
 }
