@@ -10,7 +10,7 @@ namespace ICC.Api.Repositories.Contracts
         Task<IEnumerable<PersonalAccount>> GetPersonalAccounts();
         Task<PersonalAccount> GetPersonalAccountById(int id);
         Task<PersonalAccount> AddPersonalAccount(PersonalAccToAddDto personalAccountToAddDto);
-        Task<PersonalAccount> UpdatePersonalAccount(int id, PersonalAccToUpdateDto personalAccountDto);
+        Task<PersonalAccount> UpdatePersonalAccount(PersonalAccToUpdateDto personalAccountDto);
         Task<PersonalAccount> DeletePersonalAccount(int id);
     }
 }

@@ -38,7 +38,7 @@ namespace ICC.Api.Controllers
                     return Ok(accountDtos);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Failed to retrieve data from database");
@@ -62,13 +62,59 @@ namespace ICC.Api.Controllers
                     return Ok(accountsDto);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Failed to retrieve data from datatbase");
             }
         }
 
+        [HttpPost("/update/{id:int}")]
+        public async Task<ActionResult<PersonalAccountDto>> UpdateAccount([FromBody]PersonalAccToUpdateDto accountToUpdate)
+        {
+            try
+            {
+                var updatedAcc = await personalAccRepository.UpdatePersonalAccount(accountToUpdate);
+
+                if (updatedAcc == null)
+                {
+                    return NoContent();
+                }
+
+                var account = await personalAccRepository.GetPersonalAccountById(updatedAcc.Id);
+                if (account == null)
+                {
+                    throw new Exception($"Couldn't retrieve account with id{account.Id} from database!");
+                }
+
+                var updataedAccountToDto = updatedAcc.ConvertToDto();
+                return CreatedAtAction(nameof(GetAccount), new { id = updataedAccountToDto.Id }, updataedAccountToDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<PersonalAccountDto>> CreateAccount([FromBody]PersonalAccToAddDto accountToAdd)
+        {
+            var createdAccount = await personalAccRepository.AddPersonalAccount(accountToAdd);
+
+            if (createdAccount == null)
+            {
+                return NoContent();
+            }
+
+            var account = await personalAccRepository.GetPersonalAccountById(createdAccount.Id);
+            if (account == null)
+            {
+                throw new Exception($"Couldn't retrieve account with id{account.Id} from database!");
+            }
+
+            var createdAccountToDto = createdAccount.ConvertToDto();
+            return CreatedAtAction(nameof(GetAccount), new {id = createdAccountToDto.Id}, createdAccountToDto);
+        }
 
     }
 }

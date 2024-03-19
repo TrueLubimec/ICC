@@ -19,7 +19,7 @@ else
     @*РЕАЛИЗАЦИЯ ПОИСКОВИКА И ФИЛЬТРОВ*@
     <form>
         <p>
-            <select asp-for="AccountNumber" asp-items="Model.Number"> @*тут лучше как раз фильры ебануть, а то он сразу кидает все номера*@
+            <select asp-for="AccountNumber" asp-items="Model.Number"> @* тут лучше как раз фильры ебануть, а то он сразу кидает все номера*@
                 <option value="">All</option>
             </select>
             Account Number: <input type="text" asp-for="SearchLine"/>
@@ -34,7 +34,7 @@ else
         @foreach (var item in Model.accountDto)
         {
             <div class="col-md-3 mb-2">
-                <a href="/AccountDetails?accountId=@item.Id">  @*СЮДА ВПИСАТЬ ПЕРЕХОД НА ДЕТАЛИ*@
+                <a href="/AccountDetails?accountId=@item.Id">  @* ПЕРЕХОД НА ДЕТАЛИ *@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title mb-3">

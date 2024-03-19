@@ -38,7 +38,6 @@ namespace ICC.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ICC.Api", Version = "v1" });
             });
-
             services.AddScoped<IPersonalAccRepository, PersonalAccRepository>();
         }
 
@@ -56,6 +55,8 @@ namespace ICC.Api
                 policy.WithOrigins("http://localhost:44396", "http://localhost:44338")
                 .AllowAnyMethod()
                 .WithHeaders(HeaderNames.ContentType));
+
+            app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 
