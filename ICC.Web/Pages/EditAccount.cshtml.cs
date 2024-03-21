@@ -15,6 +15,8 @@ namespace ICC.Web.Pages
 
         public PersonalAccountDto accountDto { get; set; }
 
+        public PersonalAccToUpdateDto updateAccountDto { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public int accountId { get; set; }
 
@@ -26,6 +28,11 @@ namespace ICC.Web.Pages
         public async Task OnGet()
         {
             accountDto = await personalAccountService.GetAccount(accountId);
+        }
+
+        public async Task EditAccount(PersonalAccToUpdateDto updateAccDto)
+        {
+            await personalAccountService.UpdateAccount(updateAccDto);
         }
     }
 }

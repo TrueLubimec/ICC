@@ -9,5 +9,6 @@ namespace ICC.Web.Services.Contracts
     {
         Task<IEnumerable<PersonalAccountDto>> GetAccounts();
         Task<PersonalAccountDto> GetAccount(int id);
+        Task<PersonalAccountDto> UpdateAccount(PersonalAccToUpdateDto updateAccDto);
     }
 }

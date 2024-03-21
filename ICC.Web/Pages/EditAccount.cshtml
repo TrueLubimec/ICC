@@ -1,13 +1,38 @@
-﻿@page
+﻿@page "{id:int}"
+        @* use ? to make id optional *@
 @model ICC.Web.Pages.EditAccountModel
 @{
     ViewData["Title"] = "Account Details";
 }
+
 @* @if (ErrorMessage != null)
 {
 <DisplayError ErrorMessage="EBAT NE ROBIT"></DisplayError>
 }
 @else *@
+
+<h1>Edit @Model.accountDto.Id</h1>
+
+<form asp-action="@Model.EditAccount(updateAcccountDto)" method="post">
+    <div>
+        <label asp-for="updateAccountDto.Address"></label>
+        <input asp-for="updateAccountDto.Address" />
+        <span asp-validation-for="updateAccountDto.Address"></span>
+    </div>
+    <div>
+        <label asp-for="updateAccountDto.Square"></label>
+        <input asp-for="updateAccountDto.Square" />
+        <span asp-validation-for="updateAccountDto.Square"></span>
+    </div>
+    <div>
+        <label asp-for="updateAccountDto.Residents"></label>
+        <input asp-for="updateAccountDto.Residents" />
+        <span asp-validation-for="updateAccountDto.Residents"></span>
+    </div>
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+</form>
 
 <h3 class="mb-5">Account Details</h3>
 <div class="row">

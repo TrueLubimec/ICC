@@ -72,5 +72,32 @@ namespace ICC.Web.Services
                 throw;
             }
         }
+
+        public async Task<PersonalAccountDto> UpdateAccount(PersonalAccToUpdateDto updateAccDto)
+        {
+            var httpClient = httpClientFactory.CreateClient("test");
+
+            try
+            {
+                var response = await httpClient.PutAsJsonAsync($"api/update/{updateAccDto.Id}", updateAccDto);
+                if (response.IsSuccessStatusCode)
+                {
+                    if(response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return default(PersonalAccountDto);
+                    }
+                    return await response.Content.ReadFromJsonAsync<PersonalAccountDto>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception(message.ToString());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

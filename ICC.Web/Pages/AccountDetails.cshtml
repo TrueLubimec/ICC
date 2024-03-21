@@ -19,16 +19,7 @@
                 @Model.accountDto.Square.ToString()&nbsp
             </b>
         </p>
-@*         <div>
-            <button class="btn btn-success"
-            @onclick="() => (AddToCart_Click(new CartItemToAddDto{
-                    CartId = HardCoded.CartId,
-                    ProductId = Product.Id,
-                    Qty = 1
-                }))">
-                <b>Add to Cart</b>
-            </button>
-        </div> *@
+        <a class ="btn btn-outline-warning asp-page="./EditAccount" asp-route-id="@Model.accountDto.Id">Edit</a>       @* переход на edit *@
     </div>
 
 </div>
